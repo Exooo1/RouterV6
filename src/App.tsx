@@ -39,7 +39,7 @@ const Status = () => {
     </div>
 }
 
-const Bags = ({out}:any)=>{
+const Bags = ({out}: any) => {
     return <div>
         <h1>Bags</h1>
         {out}
@@ -47,7 +47,7 @@ const Bags = ({out}:any)=>{
 }
 const Main = () => {
     const navigate = useNavigate()
-    const out =useOutlet()
+    const out = useOutlet()
     console.log(out)
 
     // if (1){
@@ -79,12 +79,24 @@ const Id = () => {
     const {id} = useParams()
     const loc = useLocation()
     console.log(loc)
+    console.log(searchParams.get('filter' + 'superMario'))
     useEffect(() => {
         console.log(id)
     }, [])
     return <div>
         <h1>This is ID</h1>
         <button onClick={() => setSearchParams({user: Math.ceil(Math.random() * 10) + ""})}>click</button>
+        <input
+            value={searchParams.get("filter") || ""}
+            onChange={(event) => {
+                let filter = event.target.value;
+                if (filter) {
+                    setSearchParams({filter});
+                } else {
+                    setSearchParams({});
+                }
+            }}
+        />
     </div>
 }
 
